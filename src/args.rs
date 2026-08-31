@@ -1,4 +1,5 @@
-use clap::{Args, Parser, Subcommand};
+// use clap::{Args, Parser, Subcommand};
+use clap::{Parser};
 
 use std::net::Ipv4Addr;
 
@@ -34,7 +35,7 @@ use std::net::Ipv4Addr;
                                                       `. _-,`|
                                                         |,_-`|
                                                         '----'
- Scanner de reconnaissance réseau test
+ Scanner de reconnaissance réseau
  ", long_about = None)]
 
 pub struct Cli {
@@ -47,7 +48,7 @@ pub struct Cli {
     /// Port de fin
     #[arg(short, long, default_value_t = 6000)]
     pub end_port: u16,
-    /// Timeout
-    #[arg(short, long, default_value_t = 10)]
-    pub timeout: u64,
+    /// Timeout en millisecondes
+    #[arg(short, long, default_value_t = 1000)]
+    pub timeout_ms: u64,
 }
