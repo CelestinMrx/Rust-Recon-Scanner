@@ -1,42 +1,12 @@
+use crate::ascii_art::AXE;
+
 // use clap::{Args, Parser, Subcommand};
 use clap::{Parser};
 
 use std::net::Ipv4Addr;
 
 #[derive(Parser, Debug)]
-#[command(author, version, about ="
-                         _,,--.._  
-                        /. ` ` .  `.
-                        )|       `  `.
-           .           / |         `  `
-            `.        / /            ` `
-             `.`.    / /              ` `
-               `.`.'' /                ' :
-                <','/'`                . ;
-               ,-'.-    `             , /
-           _.-',-^`       `      _.-----
-     /`==::.,-'     `       ` ,-'
-    / /               `     .;
-    | |..               ` .,' `.
-    | ':`....---.       ,'`'.   `.
-     .`:.:.:.:.:-..    /     `.   `.
-      .`ccoccoccoc'``./        `.   `.
-       `.`CQCCQCCCQCC/           `.   `.
-         `.`8O8O8O8O8(             `.   `.
-           `.`_-_@-@_-;              `. .'''.
-                ''''                   :,' ,--'
-                                        `.` _,--
-                 A                        `.  _,',.
-                (@)                         `. .-' `_
-                                              `. ,-^.`.
-                   A                            `. - _.-.
-                  (@)                             `.', ,'-
-                                                    `. _,-`__
-                                                      `. _-,`|
-                                                        |,_-`|
-                                                        '----'
- Scanner de reconnaissance réseau
- ", long_about = None)]
+#[command(author, version, about = AXE, long_about = None)]
 
 pub struct Cli {
     /// IP cible
