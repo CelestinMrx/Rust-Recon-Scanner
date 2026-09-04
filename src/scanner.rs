@@ -25,24 +25,14 @@ pub async fn read_with_timeout(stream: &mut TcpStream, timeout_ms: u64) -> Optio
     }
 }
 
-pub async fn grab_banner(ip: Ipv4Addr, port: u16, timeout_ms: u64) -> Option<String> {
-    let socket: SocketAddr = SocketAddr::new(IpAddr::V4(ip), port);
+pub async fn grab_banner(stream: &mut TcpStream, timeout_ms: u64) -> Option<String> {
 
-    let res: Result<Result<TcpStream, std::io::Error>, tokio::time::error::Elapsed> = timeout(
-        Duration::from_millis(timeout_ms),
-        TcpStream::connect(socket),
-    )
-    .await;
-
-    match res {
-        Ok(Ok(mut stream)) => {let awnser = read_with_timeout(&mut stream, timeout_ms).await;
-                                            match awnser {
-                                                None => {stream.write_all(b"GET / HTTP/1.0\r\n\r\n").await.ok();
-                                                        read_with_timeout(&mut stream, timeout_ms).await},
-                                                _ => awnser
-                                            }
-                                        },
-        _ => None,
+    let awnser = read_with_timeout(stream, timeout_ms).await;
+    
+    match awnser {
+        None => {stream.write_all(b"GET / HTTP/1.0\r\n\r\n").await.ok();
+                    read_with_timeout(stream, timeout_ms).await},
+        _ => awnser
     }
 }
 
@@ -56,10 +46,10 @@ pub async fn scan_port(ip: Ipv4Addr, port: u16, timeout_ms: u64) -> ScanResult {
     .await;
 
     match res {
-        Ok(Ok(_)) => ScanResult {
+        Ok(Ok(mut stream)) => ScanResult {
             port,
             is_open: true,
-            banner: grab_banner(ip, port, timeout_ms).await
+            banner: grab_banner(&mut stream, timeout_ms).await
         },
         Ok(Err(_)) => ScanResult {
             port,

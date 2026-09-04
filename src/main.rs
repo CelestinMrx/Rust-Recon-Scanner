@@ -20,7 +20,10 @@ async fn main() {
     println!("Scan report for {}", args.ip);
     println!("PORT   SERVICE");
     for port in &scan {
-        println!("{}   {:?}", port.port, port.banner);
-        println!("");
+        match port.banner.as_deref() {
+            None => println!("{}   Unknown", port.port),
+            Some(s) if s.is_empty() => println!("{}   Unknown", port.port),
+            Some(service) => println!("{}   {}", port.port, service.lines().next().unwrap_or("Unknown"))
+        }
     } 
 }
