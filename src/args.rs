@@ -1,4 +1,4 @@
-use crate::ascii_art::AXE;
+use crate::ascii_art::CRAB;
 
 // use clap::{Args, Parser, Subcommand};
 use clap::{Parser};
@@ -6,7 +6,7 @@ use clap::{Parser};
 use std::net::Ipv4Addr;
 
 #[derive(Parser, Debug)]
-#[command(author, version, about = AXE, long_about = None)]
+#[command(author, version, about = CRAB, long_about = None)]
 
 pub struct Cli {
     /// IP cible

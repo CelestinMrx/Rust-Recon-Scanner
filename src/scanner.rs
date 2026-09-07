@@ -5,12 +5,33 @@ use tokio::net::TcpStream;
 use tokio::time::{Duration, timeout};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
+use std::fs::File;
+use std::path::Path;
 
 #[derive(Debug)]
 pub struct ScanResult {
     pub port: u16,
     pub is_open: bool,
     pub banner: Option<String>
+}
+
+#[derive(Debug, serde::Deserialize)]
+struct Record {
+    port: u16,
+    service: String,
+}
+
+pub async fn read_csv<P: AsRef<Path>>(filename: P, port: u16) -> Option<String> {
+    let file = File::open(filename).ok()?;
+    let mut rdr = csv::Reader::from_reader(file);
+    
+    for result in rdr.deserialize() {
+        let record: Record = result.ok()?;
+        if record.port == port {
+            return Some(record.service)
+        }
+    }
+    None
 }
 
 pub async fn read_with_timeout(stream: &mut TcpStream, timeout_ms: u64) -> Option<String> {
@@ -25,13 +46,17 @@ pub async fn read_with_timeout(stream: &mut TcpStream, timeout_ms: u64) -> Optio
     }
 }
 
-pub async fn grab_banner(stream: &mut TcpStream, timeout_ms: u64) -> Option<String> {
+pub async fn grab_banner(stream: &mut TcpStream, port: u16, timeout_ms: u64) -> Option<String> {
 
     let awnser = read_with_timeout(stream, timeout_ms).await;
     
     match awnser {
         None => {stream.write_all(b"GET / HTTP/1.0\r\n\r\n").await.ok();
-                    read_with_timeout(stream, timeout_ms).await},
+                    let http = read_with_timeout(stream, timeout_ms).await;
+                    match http {
+                        None => read_csv("src/port_list.csv", port).await,
+                        _ => http
+                    }},
         _ => awnser
     }
 }
@@ -49,7 +74,7 @@ pub async fn scan_port(ip: Ipv4Addr, port: u16, timeout_ms: u64) -> ScanResult {
         Ok(Ok(mut stream)) => ScanResult {
             port,
             is_open: true,
-            banner: grab_banner(&mut stream, timeout_ms).await
+            banner: grab_banner(&mut stream, port, timeout_ms).await
         },
         Ok(Err(_)) => ScanResult {
             port,

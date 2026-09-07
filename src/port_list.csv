@@ -1,0 +1,74 @@
+﻿"port","protocol","service","category","description"
+20,TCP,FTP Data,File Transfer,File Transfer Protocol - data transfer
+21,TCP,FTP Control,File Transfer,File Transfer Protocol - command/control
+22,TCP,SSH,Remote Access,Secure Shell - encrypted remote login
+23,TCP,Telnet,Remote Access,Telnet - unencrypted remote login (legacy)
+25,TCP,SMTP,Email,Simple Mail Transfer Protocol - sending email
+53,TCP/UDP,DNS,Network,Domain Name System - hostname resolution
+67,UDP,DHCP Server,Network,Dynamic Host Configuration Protocol - server
+68,UDP,DHCP Client,Network,Dynamic Host Configuration Protocol - client
+69,UDP,TFTP,File Transfer,Trivial File Transfer Protocol
+80,TCP,HTTP,Web,Hypertext Transfer Protocol - web traffic
+110,TCP,POP3,Email,Post Office Protocol v3 - receiving email
+119,TCP,NNTP,News,Network News Transfer Protocol
+123,UDP,NTP,Network,Network Time Protocol - time sync
+135,TCP,RPC,Windows,Microsoft RPC Endpoint Mapper
+137,UDP,NetBIOS-NS,Windows,NetBIOS Name Service
+138,UDP,NetBIOS-DGM,Windows,NetBIOS Datagram Service
+139,TCP,NetBIOS-SSN,Windows,NetBIOS Session Service
+143,TCP,IMAP,Email,Internet Message Access Protocol
+161,UDP,SNMP,Network,Simple Network Management Protocol
+162,UDP,SNMP Trap,Network,SNMP Trap - notifications
+179,TCP,BGP,Network,Border Gateway Protocol - routing
+194,TCP,IRC,Chat,Internet Relay Chat
+389,TCP,LDAP,Directory,Lightweight Directory Access Protocol
+443,TCP,HTTPS,Web,HTTP Secure - encrypted web traffic
+445,TCP,SMB,File Sharing,Server Message Block - Windows file sharing
+465,TCP,SMTPS,Email,"SMTP over SSL (deprecated, use 587)"
+500,UDP,IKE,VPN,Internet Key Exchange - IPsec VPN
+514,UDP,Syslog,Logging,System Logging Protocol
+515,TCP,LPD,Printing,Line Printer Daemon - printing
+520,UDP,RIP,Network,Routing Information Protocol
+546,UDP,DHCPv6 Client,Network,DHCP for IPv6 - client
+547,UDP,DHCPv6 Server,Network,DHCP for IPv6 - server
+587,TCP,SMTP Submission,Email,Mail submission (preferred for sending)
+636,TCP,LDAPS,Directory,LDAP over SSL/TLS
+993,TCP,IMAPS,Email,IMAP over SSL/TLS
+995,TCP,POP3S,Email,POP3 over SSL/TLS
+1080,TCP,SOCKS,Proxy,SOCKS proxy protocol
+1194,UDP,OpenVPN,VPN,OpenVPN default port
+1433,TCP,MSSQL,Database,Microsoft SQL Server
+1434,UDP,MSSQL Browser,Database,SQL Server Browser Service
+1521,TCP,Oracle DB,Database,Oracle Database listener
+1723,TCP,PPTP,VPN,Point-to-Point Tunneling Protocol
+1883,TCP,MQTT,IoT,Message Queuing Telemetry Transport
+2049,TCP/UDP,NFS,File Sharing,Network File System
+2082,TCP,cPanel,Web Hosting,cPanel default port
+2083,TCP,cPanel SSL,Web Hosting,cPanel over SSL
+2181,TCP,ZooKeeper,Distributed,Apache ZooKeeper
+2375,TCP,Docker,Containers,Docker REST API (unencrypted)
+2376,TCP,Docker TLS,Containers,Docker REST API (TLS)
+3000,TCP,Dev Server,Development,Node.js/React/Rails dev server
+3306,TCP,MySQL,Database,MySQL/MariaDB database
+3389,TCP,RDP,Remote Access,Remote Desktop Protocol (Windows)
+4443,TCP,Pharos,Web,Alternative HTTPS port
+5000,TCP,Flask/UPnP,Development,Python Flask / UPnP discovery
+5432,TCP,PostgreSQL,Database,PostgreSQL database
+5672,TCP,AMQP,Messaging,RabbitMQ default port
+5900,TCP,VNC,Remote Access,Virtual Network Computing
+6379,TCP,Redis,Database,Redis in-memory database
+6443,TCP,Kubernetes API,Containers,Kubernetes API server
+6667,TCP,IRC,Chat,IRC default port
+8000,TCP,HTTP Alt,Development,Alternative HTTP / Django dev
+8080,TCP,HTTP Proxy,Web,HTTP proxy / alternative HTTP
+8443,TCP,HTTPS Alt,Web,Alternative HTTPS port
+8888,TCP,Jupyter,Development,Jupyter Notebook default
+9000,TCP,PHP-FPM,Web,PHP FastCGI Process Manager
+9090,TCP,Prometheus,Monitoring,Prometheus metrics server
+9092,TCP,Kafka,Messaging,Apache Kafka broker
+9200,TCP,Elasticsearch,Search,Elasticsearch REST API
+9300,TCP,Elasticsearch,Search,Elasticsearch node communication
+11211,TCP,Memcached,Caching,Memcached caching system
+27017,TCP,MongoDB,Database,MongoDB database
+27018,TCP,MongoDB Shard,Database,MongoDB shard server
+27019,TCP,MongoDB Config,Database,MongoDB config server
